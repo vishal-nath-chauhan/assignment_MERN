@@ -1,0 +1,9 @@
+.cta {
+	width: 40%;
+	color: black;
+	font-family: Lato;
+    margin: auto !important;
+    height: 2em;
+    font-size: 2em;
+    cursor: pointer;
+}

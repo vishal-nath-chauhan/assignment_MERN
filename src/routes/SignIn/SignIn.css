@@ -1,0 +1,39 @@
+.mainFlex {
+	justify-content: space-between;
+	align-items: center;
+}
+
+.input {
+	display: block;
+	width: 60%;
+	color: gray;
+	font-family: Lato;
+	margin: auto !important;
+	height: 2em;
+	font-size: 1.5em;
+	cursor: pointer;
+	margin-top: 1em !important;
+	border: 3px solid black;
+}
+
+.cta2 {
+	width: 40%;
+	margin: 1em auto !important;
+	color: black;
+	font-family: Lato;
+	height: 2em;
+	font-size: 2em;
+	cursor: pointer;
+}
+
+.informative {
+	text-align: center;
+	align-self: center;
+	margin-top: -1em !important;
+}
+
+.linkButton {
+	color: blue;
+	text-decoration: underline;
+	cursor: pointer;
+}

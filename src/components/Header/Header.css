@@ -1,0 +1,30 @@
+.mainFlex {
+	justify-content: space-between;
+	align-items: center;
+}
+
+.spacer {
+	flex: 1;
+}
+
+#input-with-icon-textfield {
+	color: white !important;
+}
+
+.menu_button {
+}
+
+.header_button {
+	cursor: pointer;
+	font-weight: 600;
+	color: black;
+	font-family: Lato !important;
+	padding: 0.5em 1em;
+}
+
+.icon {
+	padding-left: 25px !important;
+	background: url("/public/assets/images/searchIcon.png") no-repeat left;
+	background-size: 20px;
+	color: "white";
+}
