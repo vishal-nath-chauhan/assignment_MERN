@@ -12,8 +12,20 @@ export const getAllCourses = createAsyncThunk("getAllCourses", async (payload, t
 	}
 });
 
+export const searchCourse = createAsyncThunk("searchCourse", async (payload, thunkAPI) => {
+	const response = await apis.searchCourse(payload);
+	const { ok, problem, data } = response;
+	if (ok) {
+		return data;
+	} else {
+		return thunkAPI.rejectWithValue(problem);
+	}
+});
+
 const initialState = {
 	getAllCourseStatus: STATUS.NOT_STARTED,
+	allCourses: null,
+	searchCourseStatus : STATUS.NOT_STARTED
 };
 
 const courseSlice = createSlice({
@@ -31,6 +43,18 @@ const courseSlice = createSlice({
 			if (action.payload.success) {
 				state.allCourses = action.payload.data;
 				state.getAllCourseStatus = STATUS.SUCCESS;
+			}
+		},
+		[searchCourse.pending]: (state) => {
+			state.searchCourseStatus = STATUS.FETCHING;
+		},
+		[searchCourse.rejected]: (state) => {
+			state.searchCourseStatus = STATUS.FAILED;
+		},
+		[searchCourse.fulfilled]: (state, action) => {
+			if (action.payload.success) {
+				state.allCourses = action.payload.data;
+				state.searchCourseStatus = STATUS.SUCCESS;
 			}
 		},
 	},

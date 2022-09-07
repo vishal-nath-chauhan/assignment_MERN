@@ -17,7 +17,6 @@ const Courses = lazy(() => import("./routes/Courses/Courses"));
 const SignIn = lazy(() => import("./routes/SignIn/SignIn"));
 
 function App() {
-	
 	useEffect(() => {
 		const header = CookieHandler("get", { name: "authToken" });
 		if (header) setAuthorizationHeader(header);

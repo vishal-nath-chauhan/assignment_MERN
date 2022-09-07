@@ -18,20 +18,20 @@ export const removeAuthorizationHeader = () => {
 	delete api.headers["Authorization"];
 };
 
-
-
 // User APIS
 
 const signUpUser = (payload) => api.post(URL.signUp, payload);
 const loginUser = (payload) => api.post(URL.login, payload);
 
 // Course APIS
-const getAllCourses = (payload) => api.get(URL.course, payload);
+const getAllCourses = (payload) => api.get(URL.getAllCourse, payload);
+const searchCourse = (payload) => api.get(URL.searchCourse, payload);
 
 const apis = {
 	signUpUser,
 	loginUser,
 	getAllCourses,
+	searchCourse,
 };
 
 export default apis;

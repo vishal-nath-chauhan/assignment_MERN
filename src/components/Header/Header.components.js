@@ -1,31 +1,27 @@
 import React from "react";
-import TextField from "@mui/material/TextField";
-import InputAdornment from "@mui/material/InputAdornment";
-import AccountCircle from "@mui/icons-material/AccountCircle";
 import colors from "../../utils/designSystem.js/colors";
-import './Header.css'
+import "./Header.css";
+import { useDispatch } from "react-redux";
+import { searchCourse } from "../../reducers/CourseReducer";
 
 export const SearchBar = () => {
-	return (
-		// <TextField
-		// sx={{backgroundColor:colors.searchBarBackground,fontSize:"0.5em !important",color:"white !important",fontFamily: `"Lato" sans-serif`}}
-		// 	id="input-with-icon-textfield"
-		// 	InputProps={{
-		// 		startAdornment: (
-		// 			<InputAdornment position="start">
-		// 				<AccountCircle sx={{color:"white"}} />
-		// 			</InputAdornment>
-		// 		),
+	const dispatch = useDispatch();
+	let timer;
 
-		// 	}}
-		// 	inputProps={{
-		// 		'aria-label': 'weight',
-		// 		color:"white"
-		// 	  }}
-		// 	size='small'
-		// 	variant="outlined"
-		// />
+	const handleCourseSearch = (e) => {
+		const valueToSearch = e.target.value;
+
+		// DEBOUNCING After every 300ms
+		if (valueToSearch && valueToSearch.trim().length) {
+			clearTimeout(timer);
+			timer = setTimeout(() => {
+				dispatch(searchCourse({ title: valueToSearch }));
+			}, 300);
+		}
+	};
+	return (
 		<input
+			onChange={handleCourseSearch}
 			style={{
 				width: "15%",
 				backgroundColor: colors.searchBarBackground,
@@ -38,9 +34,9 @@ export const SearchBar = () => {
 				height: "26px",
 				marginTop: "6px",
 				padding: "0 10px 0 30px",
-				border:"none"
+				border: "none",
 			}}
-			className='icon'
+			className="icon"
 		/>
 	);
 };

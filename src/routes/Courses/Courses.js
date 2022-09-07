@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useRef } from "react";
 import Box from "@mui/material/Box";
 import Stack from "@mui/material/Stack";
 import Header from "../../components/Header/Header";
@@ -7,19 +7,17 @@ import { useDispatch, useSelector } from "react-redux";
 import { getAllCourses } from "../../reducers/CourseReducer";
 import STATUS from "../../utils/constants";
 
-const Courses = (props) => {
+const Courses = () => {
 	const dispatch = useDispatch();
 	const getAllCourseStatus = useSelector((state) => state.course.getAllCourseStatus);
 	const allCourses = useSelector((state) => state.course.allCourses);
 
-	console.log({ getAllCourseStatus, getAllCourseStatusA: getAllCourseStatus === STATUS.SUCCESS, allCourses });
+	const isApiCalled = useRef(false);
 
+	//  AS in React 18 useEffect calls itself twice
 	useEffect(() => {
-		console.log("INSIDE", { getAllCourseStatus, getAllCourseStatusA: getAllCourseStatus === STATUS.SUCCESS, allCourses });
-
-		if (!allCourses && getAllCourseStatus !== STATUS.SUCCESS) {
-			dispatch(getAllCourses());
-		}
+		if (!isApiCalled.current) dispatch(getAllCourses());
+		return () => (isApiCalled.current = true);
 		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, []);
 
@@ -29,7 +27,7 @@ const Courses = (props) => {
 			<Stack spacing={3} sx={{ margin: "3em 20em", alignItems: "start", width: "60%" }}>
 				<Typography sx={{ fontSize: "2em", fontFamily: "Lato", fontWeight: 600 }}>Welcome to freecodecamp.org</Typography>
 				<Typography sx={{ fontSize: "1em", fontWeight: 200 }}>I have not failed.I've just found 10,000 ways that won't work.</Typography>
-				{allCourses && allCourses.length ? allCourses.map((courseItem) => <CourseItem key={courseItem._id} course={courseItem} />) : null}
+				{allCourses && allCourses.length ? allCourses.map((courseItem) => <CourseItem key={courseItem._id} course={courseItem} />) : "No Courses Found"}
 			</Stack>
 		</Box>
 	);

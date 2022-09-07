@@ -64,7 +64,6 @@ const SignIn = () => {
 		}
 	};
 
-
 	const [showLogin, setShowLogin] = useState(false);
 	const handleShowLogin = (e) => (e.target.id === "login" ? setShowLogin(true) : setShowLogin(false));
 
@@ -80,9 +79,6 @@ const SignIn = () => {
 		<Box sx={{ backgroundColor: "#F5F6F7" }}>
 			<Header />
 			<Stack spacing={6} sx={{ height: "100%", margin: "3em 20em", alignItems: "start", width: "60%", padding: "0.5em 0em 2em 0em	" }}>
-				<button style={{ backgroundColor: colors.themeYellow, border: "3px solid orange" }} className="cta">
-					Continue with Google
-				</button>
 				<div style={{ borderTop: "2px solid black", width: "100% " }}>&nbsp;</div>
 				{showLogin ? (
 					<>

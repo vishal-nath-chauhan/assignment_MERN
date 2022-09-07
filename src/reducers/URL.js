@@ -1,6 +1,7 @@
 const URL = {
 	login: "user/login",
 	signUp: "user/signup",
-	course: "course/all",
+	getAllCourse: "course/all",
+	searchCourse: "course",
 };
 export default URL;
